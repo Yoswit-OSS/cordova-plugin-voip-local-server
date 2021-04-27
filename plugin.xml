@@ -11,7 +11,7 @@
 	<dependency id="cordova-plugin-android-permissions" version="1.1.2" />
 	<dependency id="cordova-plugin-iosrtc" version="6.0.20"/>
 	<dependency id="cordova-plugin-networkinterface" version="2.0.0"/>
-	<dependency id="cordova-plugin-webserver" version="1.1.0"/>
+	<dependency id="cordova-plugin-webserver" url="https://github.com/bykof/cordova-plugin-webserver.git" version="1.1.0"/>
 	<dependency id="cordova-plugin-device"/>
 
 	<js-module src="www/voip-local-server.js" name="VoIPLocalServer">
