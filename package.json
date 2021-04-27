@@ -1,0 +1,28 @@
+{
+  "name": "cordova-plugin-voip-local-server",
+  "version": "1.0.0",
+  "description": "Cordova plugin voip local server",
+  "license": "MIT",
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "webrtc",
+    "cordova:plugin"
+  ],
+  "main": "www/voip-local-server.js",
+  "homepage": "https://github.com/hit0907/cordova-plugin-voip-local-server",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hit0907/cordova-plugin-voip-local-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hit0907/cordova-plugin-voip-local-server/issues"
+  },
+  "cordova": {
+    "id": "cordova-plugin-voip-local-server",
+    "platforms": [
+      "ios", 
+      "android"
+    ]
+  }
+}
