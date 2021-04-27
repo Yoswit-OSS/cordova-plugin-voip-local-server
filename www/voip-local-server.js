@@ -1,4 +1,4 @@
-window.VoIPLocalServer = function() {
+var VoIPLocalServer = function () {
     this.start(function(success, error) {
         if (success) {
             console.log('VoIPLocalServer running at ' + this.getUri('localhost'));
@@ -172,3 +172,5 @@ VoIPLocalServer.prototype.onReject = function(json) {
 VoIPLocalServer.prototype.onMessage = function(json) {
     console.log('onMessage', json);
 };
+
+module.exports = VoIPLocalServer;
