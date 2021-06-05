@@ -9,7 +9,6 @@ var VoIPLocalServer = function () {
     this.tryLookupLocalIP();
     webserver.onRequest(
         function(request) {
-            console.log(request);
             this.sendResponse(request.requestId, 200);
             this._requestHandler(request);
         }.bind(this)
@@ -153,24 +152,14 @@ VoIPLocalServer.prototype._requestHandler = function(request) {
 }
 
 
-VoIPLocalServer.prototype.onRequest = function(request) {
-    console.log('onRequest', request);
- };
+VoIPLocalServer.prototype.onRequest = function(request) {};
 
-VoIPLocalServer.prototype.onReceiveCall = function(json) {
-    console.log('onReceiveCall', json);
-};
+VoIPLocalServer.prototype.onReceiveCall = function(json) {};
 
-VoIPLocalServer.prototype.onAnswer = function(json) {
-    console.log('onAnswer', json);
-};
+VoIPLocalServer.prototype.onAnswer = function(json) {};
 
-VoIPLocalServer.prototype.onReject = function(json) {
-    console.log('onReject', json);
-};
+VoIPLocalServer.prototype.onReject = function(json) {};
 
-VoIPLocalServer.prototype.onMessage = function(json) {
-    console.log('onMessage', json);
-};
+VoIPLocalServer.prototype.onMessage = function(json) {};
 
 module.exports = VoIPLocalServer;
