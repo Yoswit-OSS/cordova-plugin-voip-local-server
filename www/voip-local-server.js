@@ -23,6 +23,7 @@ VoIPLocalServer.ANSWER = 'answer';
 VoIPLocalServer.REJECT = 'reject';
 VoIPLocalServer.REQUEST = 'request';
 VoIPLocalServer.MESSAGE = 'message';
+VoIPLocalServer.GROUP_CALL = 'groupCall';
 
 VoIPLocalServer.prototype.getUri = function(ip) {
     return 'http://' + ip + ':' + VoIPLocalServer.port + '/';
@@ -148,6 +149,8 @@ VoIPLocalServer.prototype._requestHandler = function(request) {
         this.onReject(this._parseBody(request.body));
     } else if (request.path.indexOf('/' + VoIPLocalServer.MESSAGE) === 0) {
         this.onMessage(this._parseBody(request.body));
+    } else if (request.path.indexOf('/' + VoIPLocalServer.GROUP_CALL) === 0) {
+        this.onGroupCall(this._parseBody(request.body));
     }
 }
 
@@ -161,5 +164,7 @@ VoIPLocalServer.prototype.onAnswer = function(json) {};
 VoIPLocalServer.prototype.onReject = function(json) {};
 
 VoIPLocalServer.prototype.onMessage = function(json) {};
+
+VoIPLocalServer.prototype.onGroupCall = function(json) {};
 
 module.exports = VoIPLocalServer;
