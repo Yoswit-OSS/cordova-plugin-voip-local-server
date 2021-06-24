@@ -13,6 +13,7 @@
 	<dependency id="cordova-plugin-networkinterface" url="https://github.com/salbahra/cordova-plugin-networkinterface"/>
 	<dependency id="cordova-plugin-webserver" url="https://github.com/bykof/cordova-plugin-webserver"/>
 	<dependency id="cordova-plugin-device"/>
+	<dependency id="cordova-plugin-audiotoggle"/>
 
 	<js-module src="www/voip-local-server.js" name="VoIPLocalServer">
       	<clobbers target="VoIPLocalServer" />
