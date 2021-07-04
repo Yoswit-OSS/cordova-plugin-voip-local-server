@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 		id="cordova-plugin-voip-local-server"
-		version="1.0.0">
+		version="1.0.1">
 
 	<name>voip-local-server</name>
 	<description>Cordova plugin call via local ip</description>
@@ -17,6 +17,9 @@
 
 	<js-module src="www/voip-local-server.js" name="VoIPLocalServer">
       	<clobbers target="VoIPLocalServer" />
+    </js-module>
+	<js-module src="www/local-proxy.js" name="LocalProxy">
+      	<clobbers target="LocalProxy" />
     </js-module>
 
 	<platform name="android">
@@ -36,5 +39,11 @@
 			<uses-permission android:name="android.permission.CAMERA" />
 			<uses-permission android:name="android.webkit.PermissionRequest" />
 		</config-file>
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="LocalProxy" >
+                <param name="android-package" value="com.local.meeting.cordova.LocalProxy"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/LocalProxy.java" target-dir="src/com/local/meeting/cordova" />
 	</platform>
 </plugin>
