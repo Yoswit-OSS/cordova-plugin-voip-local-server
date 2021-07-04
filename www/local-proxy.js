@@ -1,6 +1,6 @@
 function LocalProxy() {}
 
-Permissions.prototype.setProxy = function (hostname, port, successCallback, errorCallback) {
+LocalProxy.prototype.setProxy = function (hostname, port, successCallback, errorCallback) {
     cordova.exec(
         successCallback || function() {}, 
         errorCallback || function() {}, 
@@ -10,7 +10,7 @@ Permissions.prototype.setProxy = function (hostname, port, successCallback, erro
     );
 };
 
-Permissions.prototype.resetProxy = function (successCallback, errorCallback) {
+LocalProxy.prototype.resetProxy = function (successCallback, errorCallback) {
     cordova.exec(
         successCallback || function() {}, 
         errorCallback || function() {}, 
@@ -20,4 +20,4 @@ Permissions.prototype.resetProxy = function (successCallback, errorCallback) {
     );
 };
 
-module.exports = new Permissions();
+module.exports = new LocalProxy();
