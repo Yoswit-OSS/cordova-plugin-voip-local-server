@@ -12,19 +12,19 @@ public class LocalProxy extends CordovaPlugin {
         if ("setProxy".equals(action)) {
             try {
                 setupProxy(args.getString(0), args.getString(1));
-                callbackContext.success(true);
+                callbackContext.success();
             } catch (Exception e) {
                 e.printStackTrace();
-                callbackContext.success(false);
+                callbackContext.error(e.getMessage());
             }
         }
         else if ("resetProxy".equals(action)) {
             try {
                 setupProxy(null, null);
-                callbackContext.success(true);
+                callbackContext.success();
             } catch (Exception e) {
                 e.printStackTrace();
-                callbackContext.success(false);
+                callbackContext.error(e.getMessage());
             }
         }
         else {
