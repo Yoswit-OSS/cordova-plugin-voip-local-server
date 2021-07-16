@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 		id="cordova-plugin-voip-local-server"
-		version="1.0.1">
+		version="1.0.2">
 
 	<name>voip-local-server</name>
 	<description>Cordova plugin call via local ip</description>
@@ -9,7 +9,7 @@
 	<keywords>voip, webrtc</keywords>
 	
 	<dependency id="cordova-plugin-android-permissions" version="1.1.2" />
-	<dependency id="cordova-plugin-iosrtc" version="6.0.20"/>
+	<dependency id="cordova-plugin-iosrtc" url="https://github.com/cordova-rtc/cordova-plugin-iosrtc"/>
 	<dependency id="cordova-plugin-networkinterface" url="https://github.com/salbahra/cordova-plugin-networkinterface"/>
 	<dependency id="cordova-plugin-webserver" url="https://github.com/bykof/cordova-plugin-webserver"/>
 	<dependency id="cordova-plugin-device"/>
@@ -22,6 +22,10 @@
       	<clobbers target="LocalProxy" />
     </js-module>
 
+	<platform name="ios">
+		
+	</platform>
+	
 	<platform name="android">
 		<config-file target="AndroidManifest.xml" parent="/*">
 			<uses-feature android:name="android.hardware.camera" />
