@@ -20,7 +20,7 @@ public class LocalProxy extends CordovaPlugin {
         }
         else if ("resetProxy".equals(action)) {
             try {
-                setupProxy(null, null);
+                setupProxy("", "");
                 callbackContext.success();
             } catch (Exception e) {
                 e.printStackTrace();
