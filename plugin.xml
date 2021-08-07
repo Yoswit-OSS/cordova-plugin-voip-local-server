@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 		id="cordova-plugin-voip-local-server"
-		version="1.0.2">
+		version="1.0.3">
 
 	<name>voip-local-server</name>
 	<description>Cordova plugin call via local ip</description>
@@ -12,6 +12,8 @@
 	<dependency id="cordova-plugin-iosrtc" url="https://github.com/cordova-rtc/cordova-plugin-iosrtc"/>
 	<dependency id="cordova-plugin-networkinterface" url="https://github.com/salbahra/cordova-plugin-networkinterface"/>
 	<dependency id="cordova-plugin-webserver" url="https://github.com/bykof/cordova-plugin-webserver"/>
+	<dependency id="cordova-plugin-callkit" url="https://github.com/hit0907/cordova-plugin-callkit"/>
+	<dependency id="cordova-plugin-jitsi-meet" url="https://github.com/hit0907/cordova-plugin-jitsi-meet"/>
 	<dependency id="cordova-plugin-device"/>
 	<dependency id="cordova-plugin-audiotoggle"/>
 
