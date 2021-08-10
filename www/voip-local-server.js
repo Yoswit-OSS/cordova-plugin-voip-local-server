@@ -9,6 +9,9 @@ var VoIPLocalServer = function () {
 
   this.autoPingLive();
 
+  // Ensure server alive when resume
+  document.addEventListener('resume', this.pingLive.bind(this), false);
+
   webserver.onRequest(function (request) {
     that.sendResponse(request.requestId, 200);
     that._requestHandler(request);
@@ -25,6 +28,10 @@ VoIPLocalServer.REJECT = 'reject';
 VoIPLocalServer.REQUEST = 'request';
 VoIPLocalServer.MESSAGE = 'message';
 VoIPLocalServer.GROUP_CALL = 'groupCall';
+
+VoIPLocalServer.prototype.onResume = function () {
+  this.pingLive();
+};
 
 VoIPLocalServer.prototype.getUri = function (ip) {
   return 'http://' + ip + ':' + VoIPLocalServer.port + '/';
