@@ -85,7 +85,7 @@ VoIPLocalServer.prototype.pingLive = function () {
     .catch(
       function (error) {
         console.error('Local server not running. Try restart', error);
-        this.start();
+        this.startCycle(function() {});
       }.bind(this)
     );
 };
@@ -213,7 +213,6 @@ VoIPLocalServer.prototype._requestHandler = function (request) {
     groupCall: 'onGroupCall',
   };
   if (!actions[action]) {
-    console.warn('Request uncontrolled', request.path);
     return;
   }
   this[actions[action]](this._parseBody(request.body));
