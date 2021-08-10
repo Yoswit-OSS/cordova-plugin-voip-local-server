@@ -1,23 +1,38 @@
 function LocalProxy() {}
 
-LocalProxy.prototype.setProxy = function (hostname, port, successCallback, errorCallback) {
-    cordova.exec(
-        successCallback || function() {}, 
-        errorCallback || function() {}, 
-        'LocalProxy', 
-        'setProxy', 
-        [hostname, port]
-    );
+LocalProxy.prototype.isAndroid = function () {
+  return device.platform === 'Android';
+};
+
+LocalProxy.prototype.setProxy = function (
+  hostname,
+  port,
+  successCallback,
+  errorCallback
+) {
+  if (!this.isAndroid()) {
+    return;
+  }
+  cordova.exec(
+    successCallback || function () {},
+    errorCallback || function () {},
+    'LocalProxy',
+    'setProxy',
+    [hostname, port]
+  );
 };
 
 LocalProxy.prototype.resetProxy = function (successCallback, errorCallback) {
-    cordova.exec(
-        successCallback || function() {}, 
-        errorCallback || function() {}, 
-        'LocalProxy', 
-        'resetProxy', 
-        []
-    );
+  if (!this.isAndroid()) {
+    return;
+  }
+  cordova.exec(
+    successCallback || function () {},
+    errorCallback || function () {},
+    'LocalProxy',
+    'resetProxy',
+    []
+  );
 };
 
 module.exports = new LocalProxy();
