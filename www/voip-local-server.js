@@ -66,12 +66,12 @@ VoIPLocalServer.prototype.autoPingLive = function () {
   clearInterval(this._autoPingTimer);
   this._autoPingTimer = setInterval(
     this.pingLive.bind(this),
-    this.AUTO_PING_LIVE_TIME
+    VoIPLocalServer.AUTO_PING_LIVE_TIME
   );
 };
 
 VoIPLocalServer.prototype.pingLive = function () {
-  fetch(this.getUri('localhost') + '/ping')
+  fetch(this.getUri('localhost') + 'ping')
     .then(function (response) {
       console.log('Local server is running', response);
     })
