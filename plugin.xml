@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 		id="cordova-plugin-voip-local-server"
-		version="1.0.4">
+		version="1.0.5">
 
-	<name>voip-local-server</name>
+	<name>cordova-plugin-voip-local-server</name>
 	<description>Cordova plugin call via local ip</description>
 	<license>MIT</license>
 	<keywords>voip, webrtc</keywords>
@@ -50,6 +50,10 @@
                 <param name="android-package" value="com.local.meeting.cordova.LocalProxy"/>
             </feature>
         </config-file>
+		<edit-config file="AndroidManifest.xml" mode="merge" target="/manifest">
+            <application android:networkSecurityConfig="@xml/network_security_config" android:usesCleartextTraffic="true"/>
+        </edit-config>
         <source-file src="src/android/LocalProxy.java" target-dir="src/com/local/meeting/cordova" />
+        <source-file src="network_security_config.xml" target-dir="res/xml" />
 	</platform>
 </plugin>
