@@ -123,9 +123,10 @@ VoIPLocalServer.prototype.lookupLocalIP = function (callback) {
   );
 };
 
-VoIPLocalServer.prototype.tryLookupLocalIP = function () {
+VoIPLocalServer.prototype.tryLookupLocalIP = function (callback) {
   var that = this;
   clearInterval(this._lookupIpTimer);
+  this._lookupIpCount = 0;
   this._lookupIpTimer = setInterval(function () {
     that._lookupIpCount = that._lookupIpCount || 0;
     that.lookupLocalIP(function (ip) {
@@ -133,6 +134,7 @@ VoIPLocalServer.prototype.tryLookupLocalIP = function () {
       if (ip) {
         that.localIp = ip;
         clearInterval(that._lookupIpTimer);
+        callback && callback(ip);
       }
       if (that._lookupIpCount > 30) {
         clearInterval(that._lookupIpTimer);
