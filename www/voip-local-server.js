@@ -28,6 +28,10 @@ VoIPLocalServer.REJECT = 'reject';
 VoIPLocalServer.REQUEST = 'request';
 VoIPLocalServer.MESSAGE = 'message';
 VoIPLocalServer.GROUP_CALL = 'groupCall';
+VoIPLocalServer.BUSY = 'busy';
+VoIPLocalServer.CANCEL = 'cancel';
+
+VoIPLocalServer.prototype.onLookupLocalIP = function () {};
 
 VoIPLocalServer.prototype.onResume = function () {
   this.pingLive();
@@ -131,9 +135,10 @@ VoIPLocalServer.prototype.tryLookupLocalIP = function (callback) {
     that._lookupIpCount = that._lookupIpCount || 0;
     that.lookupLocalIP(function (ip) {
       that._lookupIpCount += 1;
-      if (ip) {
+      if (ip && ip !== '0.0.0.0') {
         that.localIp = ip;
         clearInterval(that._lookupIpTimer);
+        that.onLookupLocalIP(ip);
         callback && callback(ip);
       }
       if (that._lookupIpCount > 30) {
@@ -149,22 +154,29 @@ VoIPLocalServer.prototype.sendCall = function (payload, callback) {
 };
 
 VoIPLocalServer.prototype.answer = function (payload, callback) {
-  this._send(payload, VoIPLocalServer.ANSWER, callback, true);
+  this._send(payload, VoIPLocalServer.ANSWER, callback);
 };
 
 VoIPLocalServer.prototype.reject = function (payload, callback) {
-  this._send(payload, VoIPLocalServer.REJECT, callback, true);
+  this._send(payload, VoIPLocalServer.REJECT, callback);
+};
+
+VoIPLocalServer.prototype.busy = function (payload, callback) {
+  this._send(payload, VoIPLocalServer.BUSY, callback);
+};
+
+VoIPLocalServer.prototype.cancel = function (payload, callback) {
+  this._send(payload, VoIPLocalServer.CANCEL, callback);
 };
 
 VoIPLocalServer.prototype.sendMessage = function (payload, callback) {
-  this._send(payload, VoIPLocalServer.MESSAGE, callback, true);
+  this._send(payload, VoIPLocalServer.MESSAGE, callback);
 };
 
 VoIPLocalServer.prototype._send = function (
   payload,
   enpoint,
-  callback,
-  parseJson
+  callback
 ) {
   if (!payload.ip) {
     throw new Error('Missing ip address');
@@ -182,7 +194,11 @@ VoIPLocalServer.prototype._send = function (
         response
           .text()
           .then(function (text) {
-            callback && callback(parseJson ? that._parseBody(text) : text);
+            try {
+              callback && callback(JSON.parse(text));
+            } catch (e) {
+              callback && callback(text);
+            }
           })
           .catch(function (e) {
             callback && callback(false, e);
@@ -213,6 +229,8 @@ VoIPLocalServer.prototype._requestHandler = function (request) {
     reject: 'onReject',
     message: 'onMessage',
     groupCall: 'onGroupCall',
+    cancel: 'onCancel',
+    busy: 'onBusy',
   };
   if (!actions[action]) {
     return;
@@ -231,5 +249,9 @@ VoIPLocalServer.prototype.onReject = function (json) {};
 VoIPLocalServer.prototype.onMessage = function (json) {};
 
 VoIPLocalServer.prototype.onGroupCall = function (json) {};
+
+VoIPLocalServer.prototype.onCancel = function (json) {};
+
+VoIPLocalServer.prototype.onBusy = function (json) {};
 
 module.exports = VoIPLocalServer;

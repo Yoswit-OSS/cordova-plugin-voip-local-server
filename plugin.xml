@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
 		id="cordova-plugin-voip-local-server"
-		version="1.0.6">
+		version="1.0.7">
 
 	<name>cordova-plugin-voip-local-server</name>
 	<description>Cordova plugin call via local ip</description>
@@ -51,5 +51,6 @@
             </feature>
         </config-file>
         <source-file src="src/android/LocalProxy.java" target-dir="src/com/local/meeting/cordova" />
+		<source-file src="src/network_security_config.xml" target-dir="res/xml" />
 	</platform>
 </plugin>
