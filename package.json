@@ -1,5 +1,5 @@
 {
-  "name": "cordova-plugin-voip-local-server",
+  "name": "@yoswit/cordova-plugin-voip-local-server",
   "version": "1.0.6",
   "description": "Cordova plugin voip local server",
   "license": "MIT",
